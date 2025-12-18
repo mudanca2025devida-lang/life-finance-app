@@ -1,22 +1,22 @@
 {
   "name": "Life+++ Finance AI",
   "short_name": "Life+++",
-  "description": "Controle financeiro inteligente com IA",
-  "start_url": ".",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#4a90e2",
   "theme_color": "#4a90e2",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/3135/3135706.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/3135/3135706.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ]
 }
+
