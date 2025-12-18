@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Life+++ Finance AI</title>
+  <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#4a90e2">
 
 <!-- Chart.js -->
@@ -274,7 +275,14 @@ datasets:[{label:'Saídas',data:Object.values(porMes),tension:.4}]}
 
 function toggleTema(){document.body.classList.toggle('dark');}
 render();
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+    .then(() => console.log('PWA ativo'))
+    .catch(err => console.error('Erro PWA', err));
+}
 </script>
+  
 </body>
 </html>
 
