@@ -374,7 +374,6 @@ document.body.classList.add('dark');
 }
 
 render();
-</script>
 
 <script>
 if ('serviceWorker' in navigator) {
@@ -382,7 +381,66 @@ navigator.serviceWorker.register('service-worker.js')
 .then(()=>console.log('PWA ativo'))
 .catch(err=>console.error('Erro PWA',err));
 }
+</script><script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js').then(reg => {
+
+    reg.addEventListener('updatefound', () => {
+      const newWorker = reg.installing;
+
+      newWorker.addEventListener('statechange', () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          mostrarAvisoAtualizacao();
+        }
+      });
+    });
+
+  });
+}
+
+function mostrarAvisoAtualizacao() {
+  const aviso = document.createElement('div');
+  aviso.innerHTML = `
+    <div style="
+      position:fixed;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      background:#1e272e;
+      color:#fff;
+      padding:14px 20px;
+      border-radius:14px;
+      box-shadow:0 10px 25px rgba(0,0,0,.4);
+      z-index:9999;
+      font-size:14px;
+    ">
+      🚀 Nova versão disponível
+      <button onclick="atualizarApp()" style="
+        margin-left:12px;
+        background:#44bd32;
+        border:none;
+        padding:6px 12px;
+        border-radius:8px;
+        color:#fff;
+        font-weight:bold;
+      ">
+        Atualizar
+      </button>
+    </div>
+  `;
+  document.body.appendChild(aviso);
+}
+
+function atualizarApp(){
+  navigator.serviceWorker.getRegistration().then(reg => {
+    if(reg.waiting){
+      reg.waiting.postMessage({ action: 'skipWaiting' });
+    }
+  });
+  location.reload();
+}
 </script>
+  
 
 </body>
 </html>
