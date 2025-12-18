@@ -3,10 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Life+++ Finance AI</title>
+<title>LF Monity AI</title>
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#4a90e2">
+<meta name="author" content="Larry Flávio Silva Oliveira">
+<meta name="creator" content="Larry Flávio Silva Oliveira">
+<meta name="copyright" content="© Larry Flávio Silva Oliveira">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -133,9 +136,28 @@ footer{text-align:center;font-size:12px;opacity:.7;margin:20px}
 
 <body>
 
-<header>
-<h1>🤖 Life+++ Finance AI</h1>
-<small>Controle financeiro inteligente</small>
+<header style="text-align:center;">
+  <!-- Logo profissional LF Monity AI -->
+  <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 200 200">
+    <defs>
+      <linearGradient id="gradFundo" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#4a90e2;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#44bd32;stop-opacity:1" />
+      </linearGradient>
+      <filter id="sombra" x="-50%" y="-50%" width="200%" height="200%">
+        <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/>
+      </filter>
+    </defs>
+    <circle cx="100" cy="100" r="90" fill="url(#gradFundo)" />
+    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+          font-family="Segoe UI, sans-serif" font-size="60" font-weight="bold"
+          fill="white" filter="url(#sombra)">LF</text>
+    <text x="50%" y="75%" text-anchor="middle"
+          font-family="Segoe UI, sans-serif" font-size="22" font-weight="bold"
+          fill="white" filter="url(#sombra)">Monity AI</text>
+  </svg>
+  <h1>LF Monity AI</h1>
+  <small>Seu controle financeiro inteligente</small>
 </header>
 
 <main>
@@ -202,7 +224,15 @@ footer{text-align:center;font-size:12px;opacity:.7;margin:20px}
 </div>
 </main>
 
-<footer>🚀 Life+++ Finance AI</footer>
+<footer>
+LF Monity AI © <span id="ano"></span><br>
+<span>Desenvolvido por <strong>Larry Flávio</strong></span>
+</footer>
+
+<script>
+document.getElementById('ano').textContent=new Date().getFullYear();
+</script>
+
 <div class="toggle" onclick="toggleTema()">🌓</div>
 
 <script>
@@ -355,5 +385,4 @@ navigator.serviceWorker.register('service-worker.js')
 </script>
 
 </body>
-  </html>
-  
+</html>
