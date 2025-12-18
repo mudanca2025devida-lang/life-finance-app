@@ -4,68 +4,103 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Life+++ Finance AI</title>
-
 <meta name="theme-color" content="#4a90e2">
-<meta name="description" content="Life+++ Finance AI - Controle financeiro inteligente">
 
-<!-- Chart.js estável -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-:root{--azul:#4a90e2;--vermelho:#ff5c5c;--verde:#44bd32;--amarelo:#fbc531;--cinza:#f5f6fa;--escuro:#1e272e;--card:#ffffffcc}
+:root{
+--azul:#4a90e2;--vermelho:#ff5c5c;--verde:#44bd32;
+--amarelo:#fbc531;--escuro:#1e272e;--card:#ffffffcc
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#eef5ff,#f5f6fa);transition:.4s}
-body.dark{background:linear-gradient(135deg,#1e272e,#2f3640);color:#f5f6fa}
-header{padding:22px;text-align:center;color:#fff;background:linear-gradient(90deg,var(--azul),#6fa8ff);box-shadow:0 4px 12px rgba(0,0,0,.25)}
-header h1{margin:0;font-size:26px}
-header small{opacity:.9}
-main{max-width:1400px;margin:auto;padding:20px}
-.dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
-.card{background:var(--card);backdrop-filter:blur(12px);padding:20px;border-radius:22px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.12);transition:.3s}
-.card:hover{transform:translateY(-8px)}
-.card h3{font-size:12px;margin:0;color:#666}
-body.dark .card h3{color:#ccc}
-.card p{font-size:26px;font-weight:bold;margin:10px 0}
-.grid{display:grid;grid-template-columns:1.5fr .5fr;gap:30px;margin-top:35px}
-@media(max-width:1000px){.grid{grid-template-columns:1fr}}
-.box{background:var(--card);backdrop-filter:blur(12px);padding:25px;border-radius:25px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
-.box h2{text-align:center;margin-top:0;background:linear-gradient(90deg,var(--azul),#6fa8ff);color:#fff;padding:14px;border-radius:16px}
-.form{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:14px}
+body{
+margin:0;font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#eef5ff,#f5f6fa);
+transition:.4s
+}
+body.dark{
+background:linear-gradient(135deg,#1e272e,#2f3640);
+color:#f5f6fa
+}
+header{
+padding:22px;text-align:center;color:#fff;
+background:linear-gradient(90deg,var(--azul),#6fa8ff)
+}
+main{max-width:1200px;margin:auto;padding:20px}
+.dashboard{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:16px
+}
+.card{
+background:var(--card);padding:18px;border-radius:20px;
+text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15)
+}
+.grid{display:grid;grid-template-columns:1.5fr .7fr;gap:25px;margin-top:30px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+
+.box{
+background:var(--card);padding:22px;border-radius:22px;
+box-shadow:0 8px 20px rgba(0,0,0,.15)
+}
+.form{
+display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;
+gap:10px
+}
 @media(max-width:900px){.form{grid-template-columns:1fr}}
-input,select,button{padding:14px;border-radius:14px;border:none;box-shadow:0 2px 6px rgba(0,0,0,.18)}
-button{background:linear-gradient(90deg,var(--azul),#6fa8ff);color:#fff;font-weight:bold;cursor:pointer}
+
+input,select,button{
+padding:12px;border-radius:12px;border:none;
+box-shadow:0 2px 6px rgba(0,0,0,.2)
+}
+button{
+background:linear-gradient(90deg,var(--azul),#6fa8ff);
+color:#fff;font-weight:bold;cursor:pointer
+}
 button:hover{opacity:.9}
-.progress{background:#ddd;border-radius:16px;height:24px;overflow:hidden;margin:14px 0}
-.progress div{height:100%;font-size:14px;color:#fff;display:flex;align-items:center;justify-content:center}
-.table-wrap{max-height:320px;overflow:auto;margin-top:15px}
+
+.progress{
+background:#ddd;border-radius:14px;height:22px;overflow:hidden;margin:10px 0
+}
+.progress div{
+height:100%;color:#fff;display:flex;
+align-items:center;justify-content:center;font-size:13px
+}
+
+.table-wrap{max-height:300px;overflow:auto;margin-top:10px}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:10px;border-bottom:1px solid #eee}
-th{font-size:11px;color:#777}
-.chart{height:300px;margin-top:25px}
-.insights{margin-top:18px;padding:18px;border-radius:18px;background:linear-gradient(135deg,#eaf2ff,#ffffff)}
-body.dark .insights{background:#2f3640}
-.toggle{position:fixed;bottom:20px;right:20px;background:linear-gradient(90deg,#111,#444);color:#fff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;box-shadow:0 4px 14px rgba(0,0,0,.45)}
-footer{text-align:center;font-size:12px;opacity:.7;margin:30px}
+th,td{padding:8px;border-bottom:1px solid #eee}
+
+.toggle{
+position:fixed;bottom:20px;right:20px;
+background:#111;color:#fff;width:52px;height:52px;
+border-radius:50%;display:flex;align-items:center;
+justify-content:center;font-size:22px;cursor:pointer
+}
+footer{text-align:center;font-size:12px;opacity:.7;margin:20px}
 </style>
 </head>
 
 <body>
 <header>
 <h1>🤖 Life+++ Finance AI</h1>
-<small>IA • Previsão • Automação • App-Level</small>
+<small>Controle financeiro inteligente</small>
 </header>
 
 <main>
+
 <div class="dashboard">
-<div class="card"><h3>ENTRADA</h3><p id="entrada">R$ 0,00</p></div>
-<div class="card"><h3>SAÍDA</h3><p id="saida">R$ 0,00</p></div>
-<div class="card"><h3>INVEST.</h3><p id="investimento">R$ 0,00</p></div>
-<div class="card"><h3>SALDO</h3><p id="saldo">R$ 0,00</p></div>
+<div class="card"><h4>ENTRADA</h4><p id="entrada">R$ 0,00</p></div>
+<div class="card"><h4>SAÍDA</h4><p id="saida">R$ 0,00</p></div>
+<div class="card"><h4>INVEST.</h4><p id="investimento">R$ 0,00</p></div>
+<div class="card"><h4>SALDO</h4><p id="saldo">R$ 0,00</p></div>
 </div>
 
 <div class="grid">
+
 <div class="box">
-<h2>Lançamentos</h2>
+<h3>Lançamentos</h3>
 <div class="form">
 <input id="desc" placeholder="Descrição">
 <input id="valor" type="number" step="0.01" placeholder="Valor">
@@ -75,40 +110,63 @@ footer{text-align:center;font-size:12px;opacity:.7;margin:30px}
 <option value="investimento">Investimento</option>
 </select>
 <select id="cat">
-<option>Aluguel</option><option>Alimentação</option><option>Transporte</option>
-<option>Lazer</option><option>Educação</option><option>Outros</option>
+<option>Aluguel</option><option>Alimentação</option>
+<option>Transporte</option><option>Lazer</option>
+<option>Educação</option><option>Outros</option>
 </select>
 <input id="mes" type="month">
 <button onclick="adicionar()">Adicionar</button>
 </div>
 
-<button onclick="exportar()">📤 Exportar CSV</button>
-
 <div class="table-wrap">
 <table id="tabela">
-<thead><tr><th>Desc</th><th>Tipo</th><th>Cat</th><th>Mês</th><th>Valor</th><th></th></tr></thead>
+<thead>
+<tr><th>Desc</th><th>Tipo</th><th>Cat</th><th>Mês</th><th>Valor</th><th></th></tr>
+</thead>
 <tbody></tbody>
 </table>
 </div>
 </div>
 
 <div class="box">
-<h2>IA Financeira</h2>
+<h3>IA Financeira</h3>
+
 <select id="filtroMes" onchange="render()"></select>
-<input id="meta" type="number" placeholder="Meta mensal">
+
+<input id="meta" type="number" step="0.01" placeholder="Meta mensal">
 <button onclick="salvarMeta()">Salvar Meta</button>
+
 <div class="progress"><div id="barra">0%</div></div>
-<div class="chart"><canvas id="graficoResumo"></canvas></div>
-<div class="chart"><canvas id="graficoMes"></canvas></div>
-<div class="insights" id="insights"></div>
+
+<canvas id="graficoResumo" height="200"></canvas>
+<canvas id="graficoMes" height="200"></canvas>
+
+<div id="insights"></div>
 </div>
+
 </div>
 </main>
 
-<footer>🚀 Life+++ Finance • Criado por Larry</footer>
+<footer>🚀 Life+++ Finance AI</footer>
 <div class="toggle" onclick="toggleTema()">🌓</div>
 
 <script>
+// ELEMENTOS
+const desc=document.getElementById('desc');
+const valor=document.getElementById('valor');
+const tipo=document.getElementById('tipo');
+const cat=document.getElementById('cat');
+const mes=document.getElementById('mes');
+const tabela=document.getElementById('tabela');
+const entrada=document.getElementById('entrada');
+const saida=document.getElementById('saida');
+const investimento=document.getElementById('investimento');
+const saldo=document.getElementById('saldo');
+const filtroMes=document.getElementById('filtroMes');
+const meta=document.getElementById('meta');
+const barra=document.getElementById('barra');
+const insights=document.getElementById('insights');
+
 let dados=JSON.parse(localStorage.getItem('lifeppp_dados'))||[];
 let metas=JSON.parse(localStorage.getItem('lifeppp_metas'))||{};
 let chartResumo=null,chartMes=null;
@@ -116,88 +174,107 @@ let chartResumo=null,chartMes=null;
 const f=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 
 function adicionar(){
- if(!desc.value||!valor.value||!mes.value) return alert('Preencha tudo');
- dados.push({id:Date.now(),d:desc.value,v:+valor.value,t:tipo.value,c:cat.value,m:mes.value});
- navigator.vibrate?.(80);
- salvar();
- desc.value='';valor.value='';
+if(!desc.value||!valor.value||valor.value<=0||!mes.value){
+alert('Preencha corretamente');
+return;
+}
+dados.push({
+id:Date.now(),
+d:desc.value,
+v:+valor.value,
+t:tipo.value,
+c:cat.value,
+m:mes.value
+});
+desc.value='';valor.value='';
+salvar();
 }
 
 function salvar(){
- localStorage.setItem('lifeppp_dados',JSON.stringify(dados));
- localStorage.setItem('lifeppp_metas',JSON.stringify(metas));
- render();
+localStorage.setItem('lifeppp_dados',JSON.stringify(dados));
+localStorage.setItem('lifeppp_metas',JSON.stringify(metas));
+render();
 }
 
-function remover(id){dados=dados.filter(x=>x.id!==id);salvar();}
+function remover(id){
+dados=dados.filter(x=>x.id!==id);
+salvar();
+}
 
 function salvarMeta(){
- if(!filtroMes.value||!meta.value) return alert('Selecione mês e meta');
- metas[filtroMes.value]=+meta.value;salvar();
-}
-
-function gerarInsights(saidas,limite,porCat,media){
- let msg='🤖 <b>Análise Financeira:</b><br>';
- if(limite&&saidas>limite) msg+='⚠️ Meta ultrapassada<br>';
- let maior=Object.entries(porCat).sort((a,b)=>b[1]-a[1])[0];
- if(maior) msg+=`💸 Maior gasto: <b>${maior[0]}</b> (${f(maior[1])})<br>`;
- else msg+='📊 Nenhum gasto ainda<br>';
- if(media) msg+=`📈 Média mensal: <b>${f(media)}</b><br>`;
- return msg;
+if(!filtroMes.value||!meta.value){alert('Selecione mês e meta');return;}
+metas[filtroMes.value]=+meta.value;
+salvar();
 }
 
 function render(){
- if(dados.length===0){
-  insights.innerHTML='✨ Comece adicionando seus lançamentos';
- }
- let e=0,s=0,i=0,porMes={},porCat={},meses={};
- const fm=filtroMes.value;
- tabela.querySelector('tbody').innerHTML='';
- dados.filter(x=>!fm||x.m==fm).forEach(x=>{
-  tabela.querySelector('tbody').innerHTML+=
-   `<tr><td>${x.d}</td><td>${x.t}</td><td>${x.c}</td><td>${x.m}</td><td>${f(x.v)}</td>
-    <td><button onclick="remover(${x.id})">❌</button></td></tr>`;
-  if(x.t=='entrada')e+=x.v;
-  if(x.t=='saida'){s+=x.v;porCat[x.c]=(porCat[x.c]||0)+x.v;porMes[x.m]=(porMes[x.m]||0)+x.v;}
-  if(x.t=='investimento')i+=x.v;
-  meses[x.m]=(meses[x.m]||0)+(x.t=='saida'?x.v:0);
- });
- entrada.textContent=f(e);saida.textContent=f(s);investimento.textContent=f(i);
- saldo.textContent=f(e-s-i);
+const tbody=tabela.querySelector('tbody');
+tbody.innerHTML='';
+let e=0,s=0,i=0,porMes={},porCat={};
 
- filtroMes.innerHTML='<option value="">Todos</option>'+
- [...new Set(dados.map(x=>x.m))].map(m=>`<option ${m==fm?'selected':''}>${m}</option>`).join('');
+const fm=filtroMes.value;
 
- let lim=metas[fm]||0;
- let p=lim?Math.min(100,(s/lim)*100):0;
- barra.style.width=p+'%';barra.textContent=p.toFixed(0)+'%';
- barra.style.background=p>80?'var(--amarelo)':'var(--verde)';
-
- let media=Object.values(meses).reduce((a,b)=>a+b,0)/(Object.values(meses).length||1);
- insights.innerHTML=gerarInsights(s,lim,porCat,media);
-
- if(chartResumo)chartResumo.destroy();
- chartResumo=new Chart(graficoResumo,{type:'doughnut',
- data:{labels:['Entrada','Saída','Invest.','Saldo'],
- datasets:[{data:[e,s,i,e-s-i],backgroundColor:['#4a90e2','#ff5c5c','#fbc531','#44bd32']}]}});
+dados.filter(x=>!fm||x.m===fm).forEach(x=>{
+tbody.innerHTML+=`
+<tr>
+<td>${x.d}</td>
+<td>${x.t}</td>
+<td>${x.c}</td>
+<td>${x.m}</td>
+<td>${f(x.v)}</td>
+<td><button onclick="remover(${x.id})">❌</button></td>
+</tr>`;
+if(x.t==='entrada')e+=x.v;
+if(x.t==='saida'){
+s+=x.v;
+porMes[x.m]=(porMes[x.m]||0)+x.v;
+porCat[x.c]=(porCat[x.c]||0)+x.v;
 }
+if(x.t==='investimento')i+=x.v;
+});
 
-function exportar(){
- let csv='Desc,Tipo,Cat,Mês,Valor\n';
- dados.forEach(x=>csv+=`${x.d},${x.t},${x.c},${x.m},${x.v}\n`);
- let a=document.createElement('a');
- a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
- a.download='lifeppp.csv';a.click();
+entrada.textContent=f(e);
+saida.textContent=f(s);
+investimento.textContent=f(i);
+saldo.textContent=f(e-s-i);
+
+filtroMes.innerHTML='<option value="">Todos</option>'+
+[...new Set(dados.map(x=>x.m))].map(m=>`<option ${m===fm?'selected':''}>${m}</option>`).join('');
+
+meta.value=metas[fm]||'';
+
+const lim=metas[fm]||0;
+let p=lim?Math.min(100,(s/lim)*100):0;
+barra.style.width=p+'%';
+barra.textContent=p.toFixed(0)+'%';
+barra.style.background=p>80?'var(--vermelho)':'var(--verde)';
+
+insights.innerHTML=`
+<b>Análise:</b><br>
+Total gasto: ${f(s)}<br>
+Maior categoria: ${Object.keys(porCat)[0]||'-'}
+`;
+
+if(chartResumo)chartResumo.destroy();
+chartResumo=new Chart(graficoResumo,{
+type:'doughnut',
+data:{labels:['Entrada','Saída','Invest.','Saldo'],
+datasets:[{data:[e,s,i,e-s-i]}]}
+});
+
+if(Object.keys(porMes).length){
+if(chartMes)chartMes.destroy();
+chartMes=new Chart(graficoMes,{
+type:'line',
+data:{labels:Object.keys(porMes),
+datasets:[{label:'Saídas',data:Object.values(porMes),tension:.4}]}
+});
+}
 }
 
 function toggleTema(){document.body.classList.toggle('dark');}
 render();
-  <script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js');
-}
-  </script>
-  
+</script>
 </body>
 </html>
 
